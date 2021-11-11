@@ -29,3 +29,15 @@ describe('[GET] /hobbits/:id', () => {
       expect(res.body).toMatchObject({ id: 1, name: 'sam' })
     })
   })
+
+  describe('[POST] /hobbits', () => {
+    test('responds with new hobbit', async () => {
+      const res = await request(server)
+        .post('/hobbits').send({ name: 'bilbo' })
+      // the correct shape comes back
+      // YOU!
+    })
+    test('responds with status 201', async () => {
+  
+    })
+  })
