@@ -4,7 +4,7 @@ const Hobbits = require("./hobbits/hobbits-model.js");
 
 const server = express();
 
-server.use(express.json());
+server.use(express.json()); // this
 
 server.get("/", (req, res) => {
   res.status(200).json({ api: "up" });
@@ -20,12 +20,14 @@ server.get("/hobbits", (req, res) => {
     });
 });
 
-server.get("/hobbits/id", (req, res) => {
-  res.end()
+server.get("/hobbits/:id", async (req, res) => {
+  res.json(await Hobbits.getById(req.params.id))
 });
 
-server.post("/hobbits", (req, res) => {
-  res.end()
+server.post("/hobbits", async (req, res) => {
+  res
+  .status(201)
+  .json(await Hobbits.insert(req.body))
 });
 
 server.delete("/hobbits/:id", (req, res) => {

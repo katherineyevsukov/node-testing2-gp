@@ -13,11 +13,15 @@ function getAll() {
 }
 
 function getById(id) {
-  return null
+  return db('hobbits').where('id', id ).first()
 }
 
 async function insert(hobbit) {
-  return null
+  // return db('hobbits').insert(hobbit, ['id', 'name']) // postgres
+  return db('hobbits').insert(hobbit)
+    .then(([id]) => {
+      return getById(id)
+    })
 }
 
 async function update(id, changes) {
